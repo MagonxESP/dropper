@@ -11,7 +11,7 @@ func SaveController(context *gin.Context) {
 	source := context.Query("source")
 
 	saver := application.NewRemoteFileSaver(
-		downloader.NewPixivIllustrationDownloader(),
+		downloader.NewHttpFileDownloader(),
 		infraestructure.NewFileSystemWriter("images"),
 	)
 
