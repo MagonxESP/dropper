@@ -3,11 +3,11 @@ package application
 import "github.com/MagonxESP/dropper/internal/domain"
 
 type RemoteFileSaver struct {
-	Downloader domain.RemoteFileDownloader
-	Writer     domain.RemoteFileWriter
+	Downloader domain.FileDownloader
+	Writer     domain.DownloadedFileWriter
 }
 
-func NewRemoteFileSaver(downloader domain.RemoteFileDownloader, writer domain.RemoteFileWriter) *RemoteFileSaver {
+func NewRemoteFileSaver(downloader domain.FileDownloader, writer domain.DownloadedFileWriter) *RemoteFileSaver {
 	return &RemoteFileSaver{
 		Downloader: downloader,
 		Writer:     writer,

@@ -5,10 +5,10 @@ type DownloadedFile struct {
 	Content []byte
 }
 
-type RemoteFileDownloader interface {
+type FileDownloader interface {
 	Download(url string) (*DownloadedFile, error)
 }
 
-type RemoteFileWriter interface {
+type DownloadedFileWriter interface {
 	Write(file *DownloadedFile) error
 }
