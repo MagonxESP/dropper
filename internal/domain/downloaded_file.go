@@ -1,8 +1,11 @@
 package domain
 
+import "time"
+
 type DownloadedFile struct {
-	Name    string
-	Content []byte
+	Name         string
+	Content      []byte
+	DownloadedAt time.Time
 }
 
 type FileDownloader interface {

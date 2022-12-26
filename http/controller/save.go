@@ -3,7 +3,7 @@ package controller
 import (
 	"github.com/MagonxESP/dropper/internal/application"
 	"github.com/MagonxESP/dropper/internal/infraestructure"
-	"github.com/MagonxESP/dropper/internal/infraestructure/pixiv"
+	"github.com/MagonxESP/dropper/internal/infraestructure/downloader"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,7 +11,7 @@ func SaveController(context *gin.Context) {
 	source := context.Query("source")
 
 	saver := application.NewRemoteFileSaver(
-		pixiv.NewPixivIllustrationDownloader(),
+		downloader.NewPixivIllustrationDownloader(),
 		infraestructure.NewFileSystemWriter("images"),
 	)
 

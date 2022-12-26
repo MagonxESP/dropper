@@ -1,4 +1,4 @@
-package pixiv
+package downloader
 
 import "testing"
 
@@ -24,11 +24,5 @@ func TestPixivIllustrationDownloader_Download(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if file.Content == nil {
-		t.Fatalf("The downloaded content from %s is empty", source)
-	}
-
-	if file.Name != "99895500_p0.jpg" {
-		t.Fatalf("The filename retrieved is invalid")
-	}
+	AssertDownloadedFile(t, file, "99895500_p0.jpg")
 }

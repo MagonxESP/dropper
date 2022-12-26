@@ -1,4 +1,4 @@
-package pixiv
+package downloader
 
 import (
 	"encoding/json"
@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"regexp"
+	"time"
 )
 
 type PixivIllustrationDownloader struct{}
@@ -108,7 +109,8 @@ func (d *PixivIllustrationDownloader) Download(url string) (*domain.DownloadedFi
 	}
 
 	return &domain.DownloadedFile{
-		Name:    fileName,
-		Content: fileContent,
+		Name:         fileName,
+		Content:      fileContent,
+		DownloadedAt: time.Now(),
 	}, nil
 }
