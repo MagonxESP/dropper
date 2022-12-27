@@ -46,9 +46,6 @@ And perform a request adding the Authorization header
 $ curl -H "Authorization: Bearer ZME1ZWVJNDGTOWY1MI0ZNTHHLWI1MDETYZC2MTNMYWFLOWM1" \
   --request POST "http://localhost:8080/api/drop?source=http://example.com"
 {
-  "access_token":"ZME1ZWVJNDGTOWY1MI0ZNTHHLWI1MDETYZC2MTNMYWFLOWM1",
-  "expires_in":7200,
-  "scope":"read",
-  "token_type":"Bearer"
+  "status":"ok",
 }
 ```
