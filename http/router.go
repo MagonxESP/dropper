@@ -1,11 +1,20 @@
 package http
 
 import (
-	controller2 "github.com/MagonxESP/dropper/http/controller"
+	"github.com/MagonxESP/dropper/http/controller"
 	"github.com/gin-gonic/gin"
+	ginserver "github.com/go-oauth2/gin-server"
 )
 
 func RegisterRoutes(engine *gin.Engine) {
-	engine.GET("/", controller2.HomeController)
-	engine.POST("/save", controller2.SaveController)
+	auth := engine.Group("/oauth2")
+	{
+		auth.GET("/token", ginserver.HandleTokenRequest)
+	}
+
+	api := engine.Group("/api")
+	{
+		api.Use(ginserver.HandleTokenVerify())
+		api.POST("/drop", controller.DropController)
+	}
 }
