@@ -1,14 +1,20 @@
 package controller
 
 import (
+	"errors"
 	"github.com/MagonxESP/dropper/internal/application"
 	"github.com/MagonxESP/dropper/internal/infraestructure"
 	"github.com/MagonxESP/dropper/internal/infraestructure/downloader"
 	"github.com/gin-gonic/gin"
 )
 
-func SaveController(context *gin.Context) {
+func DropController(context *gin.Context) {
 	source := context.Query("source")
+
+	if source == "" {
+		ErrorJsonResponse(400, errors.New("the source parameter is missing"), context)
+		return
+	}
 
 	saver := application.NewRemoteFileSaver(
 		downloader.NewHttpFileDownloader(),
@@ -18,13 +24,8 @@ func SaveController(context *gin.Context) {
 	err := saver.Save(source)
 
 	if err != nil {
-		context.JSON(500, map[string]string{
-			"status": "error",
-			"error":  err.Error(),
-		})
+		ErrorJsonResponse(500, err, context)
 	} else {
-		context.JSON(200, map[string]string{
-			"status": "ok",
-		})
+		SuccessStatusJsonResponse(context)
 	}
 }
