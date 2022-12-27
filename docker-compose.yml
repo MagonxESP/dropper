@@ -4,5 +4,7 @@ services:
   dropper:
     build: .
     restart: unless-stopped
+    volumes:
+      - ./storage:/app/storage
     env_file:
       - .env
