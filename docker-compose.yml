@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  dropper:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
