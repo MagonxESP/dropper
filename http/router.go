@@ -16,5 +16,6 @@ func RegisterRoutes(engine *gin.Engine) {
 	{
 		api.Use(ginserver.HandleTokenVerify())
 		api.POST("/drop", controller.DropController)
+		api.GET("/bucket/all", controller.GetAllBuckets)
 	}
 }

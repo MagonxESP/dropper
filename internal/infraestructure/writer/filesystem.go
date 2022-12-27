@@ -1,4 +1,4 @@
-package infraestructure
+package writer
 
 import (
 	"github.com/MagonxESP/dropper/internal/domain"
@@ -10,9 +10,9 @@ type FileSystemWriter struct {
 	Destination string
 }
 
-func NewFileSystemWriter(destination string) *FileSystemWriter {
+func NewFileSystemWriter(spec *domain.FileSystemBucketSpec) *FileSystemWriter {
 	return &FileSystemWriter{
-		Destination: destination,
+		Destination: spec.DirPath,
 	}
 }
 

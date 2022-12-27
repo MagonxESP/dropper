@@ -4,7 +4,11 @@ go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.8.2
+	github.com/go-oauth2/gin-server v1.1.0
+	github.com/go-oauth2/oauth2/v4 v4.5.1
 	github.com/gocolly/colly/v2 v2.1.0
+	github.com/joho/godotenv v1.4.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -14,8 +18,6 @@ require (
 	github.com/antchfx/xmlquery v1.2.4 // indirect
 	github.com/antchfx/xpath v1.1.8 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/go-oauth2/gin-server v1.1.0 // indirect
-	github.com/go-oauth2/oauth2/v4 v4.5.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
@@ -25,7 +27,6 @@ require (
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.0 // indirect
 	github.com/google/uuid v1.1.1 // indirect
-	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect

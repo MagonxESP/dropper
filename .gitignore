@@ -1,6 +1,7 @@
 .idea
 /build
 storage
+buckets
 .env
 .env.*
 !.env.example
