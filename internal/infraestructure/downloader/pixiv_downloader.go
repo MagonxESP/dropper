@@ -51,7 +51,10 @@ func ScrapeIllustrationOriginalUrl(url string) (string, error) {
 		for _, illustration := range metadata.Illustration {
 			illustration := illustration.(map[string]interface{})
 			urls := illustration["urls"].(map[string]interface{})
-			originalUrl = urls["original"].(string)
+
+			if original := urls["original"]; original != nil {
+				originalUrl = original.(string)
+			}
 			break
 		}
 	})
