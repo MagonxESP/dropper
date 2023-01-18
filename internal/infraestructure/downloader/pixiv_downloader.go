@@ -3,6 +3,7 @@ package downloader
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/MagonxESP/dropper/internal/domain"
 	"github.com/MagonxESP/dropper/internal/infraestructure"
 	colly2 "github.com/gocolly/colly/v2"
@@ -113,4 +114,17 @@ func (d *PixivIllustrationDownloader) Download(url string) (*domain.DownloadedFi
 		Content:      fileContent,
 		DownloadedAt: time.Now(),
 	}, nil
+}
+
+func GetPixivIllustrationDownloaderForUrl(url string) (domain.FileDownloader, error) {
+	regex, err := regexp.Compile(".*\\.?pixiv\\.net")
+	if err != nil {
+		return nil, err
+	}
+
+	if regex.MatchString(url) {
+		return NewPixivIllustrationDownloader(), nil
+	}
+
+	return nil, fmt.Errorf("the url %s is not valid for the pixiv downloader", url)
 }

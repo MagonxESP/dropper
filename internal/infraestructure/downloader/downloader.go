@@ -1,17 +1,15 @@
 package downloader
 
 import (
-	"errors"
-	"fmt"
 	"github.com/MagonxESP/dropper/internal/domain"
-	"regexp"
+	"log"
 )
 
+type Resolver func(url string) (domain.FileDownloader, error)
 type HttpFileDownloader struct{}
 
-var downloaders = map[string]domain.FileDownloader{
-	".*\\.?pixiv\\.net": NewPixivIllustrationDownloader(),
-	".+":                NewSimpleDownloader(),
+var resolvers = []Resolver{
+	GetPixivIllustrationDownloaderForUrl,
 }
 
 func NewHttpFileDownloader() *HttpFileDownloader {
@@ -19,19 +17,18 @@ func NewHttpFileDownloader() *HttpFileDownloader {
 }
 
 func GetDownloaderByUrl(url string) (domain.FileDownloader, error) {
-	for pattern, downloader := range downloaders {
-		regex, err := regexp.Compile(pattern)
-
+	for _, resolver := range resolvers {
+		downloader, err := resolver(url)
 		if err != nil {
-			return nil, err
+			log.Println(err)
 		}
 
-		if regex.Match([]byte(url)) {
+		if downloader != nil {
 			return downloader, nil
 		}
 	}
 
-	return nil, errors.New(fmt.Sprintf("missing downloader for url %s", url))
+	return NewSimpleDownloader(), nil
 }
 
 func (h *HttpFileDownloader) Download(url string) (*domain.DownloadedFile, error) {

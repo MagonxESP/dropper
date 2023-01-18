@@ -1,6 +1,8 @@
 package downloader
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGetDownloaderByUrl_Pixiv(t *testing.T) {
 	url := "https://www.pixiv.net/en/artworks/99895500"
@@ -12,6 +14,10 @@ func TestGetDownloaderByUrl_Pixiv(t *testing.T) {
 
 	if downloader == nil {
 		t.Errorf("missing downloader for %s", url)
+	}
+
+	if _, ok := downloader.(*PixivIllustrationDownloader); !ok {
+		t.Errorf("mismatch downloader for %s", url)
 	}
 }
 
@@ -25,5 +31,9 @@ func TestGetDownloaderByUrl_Example(t *testing.T) {
 
 	if downloader == nil {
 		t.Errorf("missing downloader for %s", url)
+	}
+
+	if _, ok := downloader.(*SimpleDownloader); !ok {
+		t.Errorf("mismatch downloader for %s", url)
 	}
 }
